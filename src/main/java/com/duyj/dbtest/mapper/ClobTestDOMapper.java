@@ -11,4 +11,6 @@ public interface ClobTestDOMapper {
     int batchInsert(List<ClobTestDO> list);
 
     int insertSelective(ClobTestDO record);
+
+    List<ClobTestDO> selectClobTestDOList(List<String> list);
 }

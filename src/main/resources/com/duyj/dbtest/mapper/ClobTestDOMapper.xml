@@ -22,6 +22,22 @@
       #{column4,jdbcType=OTHER}, #{clobId,jdbcType=OTHER}, #{clobValue,jdbcType=CLOB}
       )
   </insert>
+  <insert id="batchInsert">
+    insert into CLOB_TEST (COLUMN1, COLUMN2, COLUMN3,
+    COLUMN4, CLOB_ID, CLOB_VALUE
+    )
+    <foreach collection="list" item="item" separator="union all">
+      (select
+      #{item.column1,jdbcType=OTHER},
+      #{item.column2,jdbcType=OTHER},
+      #{item.column3,jdbcType=OTHER},
+      #{item.column4,jdbcType=OTHER},
+      #{item.clobId,jdbcType=OTHER},
+      #{item.clobValue,jdbcType=CLOB}
+      from dual
+      )
+    </foreach>
+  </insert>
   <insert id="insertSelective" parameterType="com.duyj.dbtest.entity.ClobTestDO">
     insert into CLOB_TEST
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -65,6 +81,7 @@
       </if>
     </trim>
   </insert>
+  <select id="selectClobTestDOList" resultType="com.duyj.dbtest.entity.ClobTestDO"></select>
   <resultMap id="BaseResultMap" type="com.duyj.dbtest.entity.ClobTestDO">
     <result column="COLUMN1" jdbcType="OTHER" property="column1" />
     <result column="COLUMN2" jdbcType="OTHER" property="column2" />
