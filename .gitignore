@@ -31,6 +31,8 @@ Desktop.ini
 
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
+.idea/
+target
 
 # Windows Installer files
 *.cab
