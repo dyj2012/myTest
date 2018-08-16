@@ -8,9 +8,14 @@ package com.duyj.uitl;
  */
 public class PrintTimeUtils {
 
-    public static void time(CallAble callAble) {
+    public static void time(CallAble callAble, String... name) {
         long s = System.currentTimeMillis();
         callAble.callBack();
-        System.out.println(System.currentTimeMillis() - s + "ms");
+        if (name != null) {
+            System.out.println(name[0] + (System.currentTimeMillis() - s) + "ms");
+        } else {
+            System.out.println((System.currentTimeMillis() - s) + "ms");
+        }
+
     }
 }

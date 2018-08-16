@@ -12,5 +12,8 @@ public interface ClobTestDOMapper {
 
     int insertSelective(ClobTestDO record);
 
-    List<ClobTestDO> selectClobTestDOList(List<String> list);
+    List<ClobTestDO> selectClobTestDOList1();
+    List<ClobTestDO> selectClobTestDOList2();
+    List<ClobTestDO> selectClobTestDOList3();
+    List<ClobTestDO> selectClobTestDOList4();
 }

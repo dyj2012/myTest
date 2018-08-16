@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.duyj.dbtest.mapper.ClobTestDOMapper">
-  <resultMap id="BaseResultMap" type="com.duyj.dbtest.entity.ClobTestDO">
-    <result column="COLUMN1" jdbcType="OTHER" property="column1" />
-    <result column="COLUMN2" jdbcType="OTHER" property="column2" />
-    <result column="COLUMN3" jdbcType="OTHER" property="column3" />
-    <result column="COLUMN4" jdbcType="OTHER" property="column4" />
-    <result column="CLOB_ID" jdbcType="OTHER" property="clobId" />
-  </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.duyj.dbtest.entity.ClobTestDO">
-    <result column="CLOB_VALUE" jdbcType="CLOB" property="clobValue" />
-  </resultMap>
-  <sql id="Blob_Column_List">
+    <resultMap id="BaseResultMap" type="com.duyj.dbtest.entity.ClobTestDO">
+        <result column="COLUMN1" jdbcType="OTHER" property="column1"/>
+        <result column="COLUMN2" jdbcType="OTHER" property="column2"/>
+        <result column="COLUMN3" jdbcType="OTHER" property="column3"/>
+        <result column="COLUMN4" jdbcType="OTHER" property="column4"/>
+        <result column="CLOB_ID" jdbcType="OTHER" property="clobId"/>
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.duyj.dbtest.entity.ClobTestDO">
+        <result column="CLOB_VALUE" jdbcType="CLOB" property="clobValue"/>
+    </resultMap>
+    <sql id="Blob_Column_List">
     CLOB_VALUE
   </sql>
-  <insert id="insert" parameterType="com.duyj.dbtest.entity.ClobTestDO">
+    <insert id="insert" parameterType="com.duyj.dbtest.entity.ClobTestDO">
     insert into CLOB_TEST (COLUMN1, COLUMN2, COLUMN3, 
       COLUMN4, CLOB_ID, CLOB_VALUE
       )
@@ -22,129 +22,83 @@
       #{column4,jdbcType=OTHER}, #{clobId,jdbcType=OTHER}, #{clobValue,jdbcType=CLOB}
       )
   </insert>
-  <insert id="batchInsert">
-    insert into CLOB_TEST (COLUMN1, COLUMN2, COLUMN3,
-    COLUMN4, CLOB_ID, CLOB_VALUE
-    )
-    <foreach collection="list" item="item" separator="union all">
-      (select
-      #{item.column1,jdbcType=OTHER},
-      #{item.column2,jdbcType=OTHER},
-      #{item.column3,jdbcType=OTHER},
-      #{item.column4,jdbcType=OTHER},
-      #{item.clobId,jdbcType=OTHER},
-      #{item.clobValue,jdbcType=CLOB}
-      from dual
-      )
-    </foreach>
-  </insert>
-  <insert id="insertSelective" parameterType="com.duyj.dbtest.entity.ClobTestDO">
-    insert into CLOB_TEST
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="column1 != null">
-        COLUMN1,
-      </if>
-      <if test="column2 != null">
-        COLUMN2,
-      </if>
-      <if test="column3 != null">
-        COLUMN3,
-      </if>
-      <if test="column4 != null">
-        COLUMN4,
-      </if>
-      <if test="clobId != null">
-        CLOB_ID,
-      </if>
-      <if test="clobValue != null">
-        CLOB_VALUE,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="column1 != null">
-        #{column1,jdbcType=OTHER},
-      </if>
-      <if test="column2 != null">
-        #{column2,jdbcType=OTHER},
-      </if>
-      <if test="column3 != null">
-        #{column3,jdbcType=OTHER},
-      </if>
-      <if test="column4 != null">
-        #{column4,jdbcType=OTHER},
-      </if>
-      <if test="clobId != null">
-        #{clobId,jdbcType=OTHER},
-      </if>
-      <if test="clobValue != null">
-        #{clobValue,jdbcType=CLOB},
-      </if>
-    </trim>
-  </insert>
-  <select id="selectClobTestDOList" resultType="com.duyj.dbtest.entity.ClobTestDO"></select>
-  <resultMap id="BaseResultMap" type="com.duyj.dbtest.entity.ClobTestDO">
-    <result column="COLUMN1" jdbcType="OTHER" property="column1" />
-    <result column="COLUMN2" jdbcType="OTHER" property="column2" />
-    <result column="COLUMN3" jdbcType="OTHER" property="column3" />
-    <result column="COLUMN4" jdbcType="OTHER" property="column4" />
-    <result column="CLOB_ID" jdbcType="OTHER" property="clobId" />
-  </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.duyj.dbtest.entity.ClobTestDO">
-    <result column="CLOB_VALUE" jdbcType="CLOB" property="clobValue" />
-  </resultMap>
-  <sql id="Blob_Column_List">
-    CLOB_VALUE
-  </sql>
-  <insert id="insert" parameterType="com.duyj.dbtest.entity.ClobTestDO">
-    insert into CLOB_TEST (COLUMN1, COLUMN2, COLUMN3, 
-      COLUMN4, CLOB_ID, CLOB_VALUE
-      )
-    values (#{column1,jdbcType=OTHER}, #{column2,jdbcType=OTHER}, #{column3,jdbcType=OTHER}, 
-      #{column4,jdbcType=OTHER}, #{clobId,jdbcType=OTHER}, #{clobValue,jdbcType=CLOB}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.duyj.dbtest.entity.ClobTestDO">
-    insert into CLOB_TEST
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="column1 != null">
-        COLUMN1,
-      </if>
-      <if test="column2 != null">
-        COLUMN2,
-      </if>
-      <if test="column3 != null">
-        COLUMN3,
-      </if>
-      <if test="column4 != null">
-        COLUMN4,
-      </if>
-      <if test="clobId != null">
-        CLOB_ID,
-      </if>
-      <if test="clobValue != null">
-        CLOB_VALUE,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="column1 != null">
-        #{column1,jdbcType=OTHER},
-      </if>
-      <if test="column2 != null">
-        #{column2,jdbcType=OTHER},
-      </if>
-      <if test="column3 != null">
-        #{column3,jdbcType=OTHER},
-      </if>
-      <if test="column4 != null">
-        #{column4,jdbcType=OTHER},
-      </if>
-      <if test="clobId != null">
-        #{clobId,jdbcType=OTHER},
-      </if>
-      <if test="clobValue != null">
-        #{clobValue,jdbcType=CLOB},
-      </if>
-    </trim>
-  </insert>
-
+    <insert id="batchInsert">
+        insert into CLOB_TEST (COLUMN1, COLUMN2, COLUMN3,
+        COLUMN4, CLOB_ID, CLOB_VALUE
+        )
+        <foreach collection="list" item="item" separator="union all">
+            (select
+            #{item.column1,jdbcType=OTHER},
+            #{item.column2,jdbcType=OTHER},
+            #{item.column3,jdbcType=OTHER},
+            #{item.column4,jdbcType=OTHER},
+            #{item.clobId,jdbcType=OTHER},
+            #{item.clobValue,jdbcType=CLOB}
+            from dual
+            )
+        </foreach>
+    </insert>
+    <insert id="insertSelective" parameterType="com.duyj.dbtest.entity.ClobTestDO">
+        insert into CLOB_TEST
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="column1 != null">
+                COLUMN1,
+            </if>
+            <if test="column2 != null">
+                COLUMN2,
+            </if>
+            <if test="column3 != null">
+                COLUMN3,
+            </if>
+            <if test="column4 != null">
+                COLUMN4,
+            </if>
+            <if test="clobId != null">
+                CLOB_ID,
+            </if>
+            <if test="clobValue != null">
+                CLOB_VALUE,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="column1 != null">
+                #{column1,jdbcType=OTHER},
+            </if>
+            <if test="column2 != null">
+                #{column2,jdbcType=OTHER},
+            </if>
+            <if test="column3 != null">
+                #{column3,jdbcType=OTHER},
+            </if>
+            <if test="column4 != null">
+                #{column4,jdbcType=OTHER},
+            </if>
+            <if test="clobId != null">
+                #{clobId,jdbcType=OTHER},
+            </if>
+            <if test="clobValue != null">
+                #{clobValue,jdbcType=CLOB},
+            </if>
+        </trim>
+    </insert>
+    <select id="selectClobTestDOList1" resultType="com.duyj.dbtest.entity.ClobTestDO">
+          select COLUMN1, COLUMN2, COLUMN3, COLUMN4, CLOB_ID
+          from CLOB_TEST
+          where rowNum &lt; 500
+  </select>
+    <select id="selectClobTestDOList2" resultType="com.duyj.dbtest.entity.ClobTestDO">
+    select COLUMN1, COLUMN2, COLUMN3, COLUMN4, CLOB_ID
+    from common_info
+    where rowNum &lt; 500
+  </select>
+    <select id="selectClobTestDOList3" resultType="com.duyj.dbtest.entity.ClobTestDO">
+      select COLUMN1, COLUMN2, COLUMN3, COLUMN4, CLOB_ID, CLOB_VALUE
+      from CLOB_TEST
+      where rowNum &lt; 500
+  </select>
+    <select id="selectClobTestDOList4" resultType="com.duyj.dbtest.entity.ClobTestDO">
+    select t.COLUMN1, t.COLUMN2, t.COLUMN3, t.COLUMN4, t.CLOB_ID, v.CLOB_VALUE
+      from common_info t left join COMMON_INFO_VALUE v on t.CLOB_ID = v.CLOB_ID
+      where rowNum &lt; 500
+  </select>
 </mapper>

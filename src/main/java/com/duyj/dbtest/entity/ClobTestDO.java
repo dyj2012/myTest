@@ -60,4 +60,16 @@ public class ClobTestDO {
     public void setClobValue(String clobValue) {
         this.clobValue = clobValue == null ? null : clobValue.trim();
     }
+
+    @Override
+    public String toString() {
+        return "\nClobTestDO{" +
+                "column1='" + column1 + '\'' +
+                ", column2='" + column2 + '\'' +
+                ", column3='" + column3 + '\'' +
+                ", column4='" + column4 + '\'' +
+                ", clobId='" + clobId + '\'' +
+                ", clobValue='" + clobValue + '\'' +
+                '}';
+    }
 }

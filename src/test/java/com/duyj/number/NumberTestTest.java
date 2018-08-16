@@ -32,4 +32,17 @@ public class NumberTestTest {
             NumberTest.multiply(bd1, forbid);
         }));
     }
+
+    @Test
+    public void formatTest() {
+        String[] strs = new String[]{
+                "1", "2"
+        };
+        Object[] strs2 = new Object[]{
+                "1", "2"
+        };
+
+        System.out.println(String.format("111%s,222%s",strs));
+        System.out.println(String.format("111%s,222%s",strs2));
+    }
 }

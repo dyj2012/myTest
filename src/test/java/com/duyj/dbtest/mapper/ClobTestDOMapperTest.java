@@ -43,4 +43,14 @@ public class ClobTestDOMapperTest extends BaseTest {
         clobTestDO.setClobValue(String.format("%s%s%s", s, s, s));
         return clobTestDO;
     }
+
+    @Test
+    public void select() {
+        clobTestDOMapper.selectClobTestDOList1();
+        PrintTimeUtils.time(() -> clobTestDOMapper.selectClobTestDOList1(), "带Clob字段表,但不查询clob字段:");
+        PrintTimeUtils.time(() -> clobTestDOMapper.selectClobTestDOList2(), "不带Clob字段表:");
+        PrintTimeUtils.time(() -> clobTestDOMapper.selectClobTestDOList3(), "带Clob字段表,但查询clob字段:");
+        PrintTimeUtils.time(() -> clobTestDOMapper.selectClobTestDOList4(), "不带Clob字段表,连接查询clob字段:");
+    }
+
 }
