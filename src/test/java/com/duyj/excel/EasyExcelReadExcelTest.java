@@ -17,7 +17,7 @@ public class EasyExcelReadExcelTest {
     CCReadExcel ccReadExcel = new CCReadExcel();
     EasyPoiReadExcel easyPoiReadExcel = new EasyPoiReadExcel();
     //    String filePath = "test6w.xls";
-    String filePath = "test20w.xlsx";
+    String filePath = "test.xlsx";
 
     @Test
     public void easyExcelRead() {

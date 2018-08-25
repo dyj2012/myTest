@@ -1,9 +1,8 @@
 package com.duyj.excel.easyexcel;
 
 import com.alibaba.excel.ExcelReader;
-import com.alibaba.excel.metadata.Sheet;
 import com.alibaba.excel.support.ExcelTypeEnum;
-import com.duyj.excel.ReadExcel;
+import com.duyj.excel.AbstractReadExcel;
 
 import java.io.InputStream;
 
@@ -13,7 +12,7 @@ import java.io.InputStream;
  * @author 杜永军
  * @date 2018/07/30
  */
-public class EasyExcelReadExcel extends ReadExcel {
+public class EasyExcelReadExcel extends AbstractReadExcel {
 
     private void read2003Excel(String url) {
         try (InputStream inputStream = this.getFileInputStream(url)) {

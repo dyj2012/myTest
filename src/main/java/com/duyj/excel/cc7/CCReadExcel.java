@@ -1,6 +1,6 @@
 package com.duyj.excel.cc7;
 
-import com.duyj.excel.ReadExcel;
+import com.duyj.excel.AbstractReadExcel;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import java.util.List;
  * @author 杜永军
  * @date 2018/08/08
  */
-public class CCReadExcel extends ReadExcel {
+public class CCReadExcel extends AbstractReadExcel {
     @Override
     public void readExcel(String fileUrl) {
         IRowReader iRowReader = (int sheetIndex, int curRow, List<String> cellList, int rowCount) -> {

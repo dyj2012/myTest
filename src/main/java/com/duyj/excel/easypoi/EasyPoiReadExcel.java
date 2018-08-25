@@ -1,40 +1,29 @@
 package com.duyj.excel.easypoi;
 
-import cn.afterturn.easypoi.excel.ExcelImportUtil;
 import cn.afterturn.easypoi.excel.entity.ImportParams;
-import com.duyj.excel.ReadExcel;
+import cn.afterturn.easypoi.excel.imports.sax.SaxReadExcel;
+import com.duyj.excel.AbstractReadExcel;
 
 import java.io.InputStream;
-import java.util.List;
+import java.util.Map;
 
 /**
- *
- *
  * @author 杜永军
  * @date 2018/08/08
  */
-public class EasyPoiReadExcel extends ReadExcel {
+public class EasyPoiReadExcel extends AbstractReadExcel {
 
     @Override
     public void readExcel(String fileUrl) {
-        InputStream fileInputStream = getFileInputStream(fileUrl);
-        if (fileUrl.endsWith(".xls")) {
-            this.readExcel03(fileInputStream);
-        } else {
-            this.readExcel07(fileInputStream);
-        }
-    }
-
-    public void readExcel03(InputStream inputStream) {
         try {
-            List<Object> objects = ExcelImportUtil.importExcel(inputStream, TestModel.class, new ImportParams());
-            System.out.println(objects);
+            this.readExcel07(getFileInputStream(fileUrl));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void readExcel07(InputStream inputStream) {
-        ExcelImportUtil.importExcelBySax(inputStream, TestModel.class, new ImportParams(), new PageReadExcelHandle<>());
+    public void readExcel07(InputStream inputStream) throws Exception {
+        ImportParams params = new ImportParams();
+        new SaxReadExcel().readExcel(inputStream, Map.class, params, new MapSaxRowRead(params, new PageReadExcelHandle<>()), null);
     }
 }
