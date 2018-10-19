@@ -8,7 +8,7 @@ package com.duyj.uitl;
  */
 public class DoWhileCountUtils {
 
-    public static void doWhile(int count,CallAble call){
+    public static void doWhile(int count, CallAble call) {
         for (int i = 0; i < count; i++) {
             call.callBack();
         }

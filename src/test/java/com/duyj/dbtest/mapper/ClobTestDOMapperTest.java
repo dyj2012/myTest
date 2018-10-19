@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <description>
@@ -51,6 +52,12 @@ public class ClobTestDOMapperTest extends BaseTest {
         PrintTimeUtils.time(() -> clobTestDOMapper.selectClobTestDOList2(), "不带Clob字段表:");
         PrintTimeUtils.time(() -> clobTestDOMapper.selectClobTestDOList3(), "带Clob字段表,但查询clob字段:");
         PrintTimeUtils.time(() -> clobTestDOMapper.selectClobTestDOList4(), "不带Clob字段表,连接查询clob字段:");
+    }
+
+    @Test
+    public void selectMap() {
+        List<Map<String, Object>> list = clobTestDOMapper.selectClobTestDOList5();
+        System.out.println(list);
     }
 
 }

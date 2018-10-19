@@ -101,4 +101,9 @@
       from common_info t left join COMMON_INFO_VALUE v on t.CLOB_ID = v.CLOB_ID
       where rowNum &lt; 500
   </select>
+
+    <select id="selectClobTestDOList5" resultType="hashmap">
+    select t.* from common_info t where
+      t.column1 in ('5730e0b69f9311e8aca6df63db49cf0d', '5730e0b79f9311e8aca6cd1b28b7daaa')
+  </select>
 </mapper>

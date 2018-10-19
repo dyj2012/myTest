@@ -13,10 +13,11 @@ public class BatchSaveUtils {
 
     /**
      * 批量分组插入
-     * @param l 需要插入的list
+     *
+     * @param l        需要插入的list
      * @param perCount 每组数量
-     * @param c 回调函数
-     * @param <T> 集合泛型
+     * @param c        回调函数
+     * @param <T>      集合泛型
      */
     public static <T> void batchSave(List<T> l, int perCount, Consumer<List<T>> c) {
         if (perCount <= 0) {

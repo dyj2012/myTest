@@ -1,9 +1,9 @@
 package com.duyj.excel;
 
-import com.duyj.uitl.PrintTimeUtils;
 import com.duyj.excel.cc7.CCReadExcel;
 import com.duyj.excel.easyexcel.EasyExcelReadExcel;
 import com.duyj.excel.easypoi.EasyPoiReadExcel;
+import com.duyj.uitl.PrintTimeUtils;
 import org.junit.Test;
 
 /**

@@ -11,6 +11,7 @@ import org.junit.Test;
  */
 public class AbstractWriteExcelTest {
     WriteExcel writeExcel = new WriteExcel();
+
     @Test
     public void test1() {
         writeExcel.test1();

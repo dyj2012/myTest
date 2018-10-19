@@ -42,7 +42,7 @@ public class NumberTestTest {
                 "1", "2"
         };
 
-        System.out.println(String.format("111%s,222%s",strs));
-        System.out.println(String.format("111%s,222%s",strs2));
+        System.out.println(String.format("111%s,222%s", strs));
+        System.out.println(String.format("111%s,222%s", strs2));
     }
 }
