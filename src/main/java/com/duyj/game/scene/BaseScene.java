@@ -1,8 +1,8 @@
 package com.duyj.game.scene;
 
-import com.duyj.game.Hurt;
-import com.duyj.game.Life;
 import com.duyj.game.ShowCallback;
+import com.duyj.game.model.Hurt;
+import com.duyj.game.model.Life;
 
 import java.math.BigDecimal;
 
@@ -39,8 +39,8 @@ public class BaseScene {
         if (isAttackOver()) {
             return;
         }
-        BigDecimal hurtValue = BigDecimal.valueOf(hurt.getBaseHurt() + hurt.getAttachHurt());
-        BigDecimal physicsShield = BigDecimal.valueOf(life.getPhysicsShield() - hurt.getReducedDefense());
+        BigDecimal hurtValue = BigDecimal.valueOf(hurt.getHurtValue());
+        BigDecimal physicsShield = BigDecimal.valueOf(life.getPhysicsDefense());
         if (physicsShield.compareTo(BigDecimal.ZERO) > 0) {
             hurtValue = hurtValue.subtract(hurtValue.multiply(physicsShield.divide(DEFENSE_BASE)));
         }
@@ -50,7 +50,6 @@ public class BaseScene {
             lifeOver = true;
             callback.printInfo("life is dead");
         }
-
     }
 
 

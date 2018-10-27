@@ -1,4 +1,4 @@
-package com.duyj.game;
+package com.duyj.game.model;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
@@ -16,11 +16,11 @@ public class Life {
     /**
      * 物理护盾
      */
-    private long physicsShield;
+    private long physicsDefense;
 
-    public Life(long blood, long physicsShield) {
+    public Life(long blood, long physicsDefense) {
         this.blood = blood;
-        this.physicsShield = physicsShield;
+        this.physicsDefense = physicsDefense;
     }
 
     public long getBlood() {
@@ -31,15 +31,15 @@ public class Life {
         this.blood = blood;
     }
 
-    public long getPhysicsShield() {
-        return physicsShield;
+    public long getPhysicsDefense() {
+        return physicsDefense;
     }
 
     @Override
     public String toString() {
         ToStringBuilder builder = new ToStringBuilder(this);
         builder.append("blood", blood);
-        builder.append("physicsShield", physicsShield);
+        builder.append("physicsDefense", physicsDefense);
         return builder.toString();
     }
 }

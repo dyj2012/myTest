@@ -4,19 +4,19 @@ import com.duyj.game.AbstractBossSpirit;
 import com.duyj.game.model.Life;
 
 /**
- * 蚂蚁
+ * <description>
  *
  * @author 杜永军
- * @date 2018/10/12
+ * @date 2018/10/27
  */
-public class Ant extends AbstractBossSpirit {
+public class Monkey extends AbstractBossSpirit {
     @Override
     public String getName() {
-        return "ant";
+        return "Monkey";
     }
 
     @Override
     public Life getLifeInfo() {
-        return new Life(BASE_BLOOD, 10);
+        return new Life(2 * BASE_BLOOD, 10);
     }
 }

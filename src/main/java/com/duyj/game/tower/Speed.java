@@ -1,21 +1,19 @@
 package com.duyj.game.tower;
 
-import com.duyj.game.AbstractTowerSpirit;
-import com.duyj.game.Hurt;
+import com.duyj.game.AbstractTower;
+import com.duyj.game.model.TowProperties;
 
 /**
- * 攻速
+ * 攻速,减少攻击间隔
  *
  * @author 杜永军
  * @date 2018/09/15
  */
-public class Speed extends AbstractTowerSpirit {
-    public Speed(AbstractTowerSpirit next) {
-        super(next);
-    }
+public class Speed extends AbstractTower {
 
     @Override
-    protected void computeHurt(Hurt hurt) {
+    public void init(TowProperties properties) {
 
     }
+
 }

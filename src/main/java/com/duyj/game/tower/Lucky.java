@@ -4,14 +4,18 @@ import com.duyj.game.AbstractTower;
 import com.duyj.game.model.TowProperties;
 
 /**
- * 减防,减少护甲的百分比
+ * 攻速,减少攻击间隔
  *
  * @author 杜永军
- * @date 2018/10/12
+ * @date 2018/09/15
  */
-public class ReducedDefense extends AbstractTower {
+public class Lucky extends AbstractTower {
+
+    private int luckyValue;
+
     @Override
     public void init(TowProperties properties) {
-
+        luckyValue = properties.getLucky();
     }
+
 }
