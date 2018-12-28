@@ -12,7 +12,7 @@ public class PageReadExcelHandle<T> implements IExcelReadRowHandler<T> {
     int count = 0;
 
     @Override
-    public void hanlder(T o) {
+    public void handler(T o) {
         System.out.println(o);
         count++;
         System.out.println(count);

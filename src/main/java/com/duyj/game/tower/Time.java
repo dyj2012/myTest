@@ -13,6 +13,8 @@ import com.duyj.game.model.TowProperties;
  */
 public class Time extends AbstractTower {
 
+    private int time;
+
     @Override
     public void init(TowProperties properties) {
 

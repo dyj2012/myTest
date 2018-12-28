@@ -22,4 +22,10 @@ public interface ClobTestDOMapper {
     List<ClobTestDO> selectClobTestDOList4();
 
     List<Map<String, Object>> selectClobTestDOList5();
+
+    void createTempTable();
+
+    void insertTemp();
+
+    List<Map<String, Object>> selectTemp();
 }

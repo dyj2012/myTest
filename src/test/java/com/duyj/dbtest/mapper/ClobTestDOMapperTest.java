@@ -1,6 +1,7 @@
 package com.duyj.dbtest.mapper;
 
 import com.duyj.dbtest.BaseTest;
+import com.duyj.dbtest.MysqlTempTable;
 import com.duyj.dbtest.entity.ClobTestDO;
 import com.duyj.uitl.BatchSaveUtils;
 import com.duyj.uitl.IDGenerator;
@@ -22,6 +23,9 @@ public class ClobTestDOMapperTest extends BaseTest {
 
     @Autowired
     ClobTestDOMapper clobTestDOMapper;
+
+    @Autowired
+    MysqlTempTable mysqlTempTable;
 
     @Test
     public void insert() {
@@ -60,4 +64,10 @@ public class ClobTestDOMapperTest extends BaseTest {
         System.out.println(list);
     }
 
+    @Test
+    public void tempTest() {
+        mysqlTempTable.query1();
+        mysqlTempTable.query2();
+        mysqlTempTable.query3();
+    }
 }

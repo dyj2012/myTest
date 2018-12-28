@@ -32,6 +32,7 @@ public abstract class AbstractWriteExcel {
     public static class KeyTitle {
         private final String key;
         private final String title;
+        private List<KeyTitle> subTitleList;
 
         public KeyTitle(String key, String title) {
             this.key = key;
@@ -44,6 +45,14 @@ public abstract class AbstractWriteExcel {
 
         public String getTitle() {
             return title;
+        }
+
+        public List<KeyTitle> getSubTitleList() {
+            return subTitleList;
+        }
+
+        public void setSubTitleList(List<KeyTitle> subTitleList) {
+            this.subTitleList = subTitleList;
         }
     }
 

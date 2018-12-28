@@ -48,7 +48,7 @@ public class MapSaxRowRead implements ISaxRowRead {
             for (int i = 0; i < datas.size(); i++) {
                 rowMap.put(mapKey.get(i), String.valueOf(datas.get(i).getValue()));
             }
-            iExcelReadRowHandler.hanlder(rowMap);
+            iExcelReadRowHandler.handler(rowMap);
         }
     }
 }

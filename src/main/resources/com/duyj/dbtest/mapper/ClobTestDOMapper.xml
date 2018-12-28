@@ -81,6 +81,8 @@
             </if>
         </trim>
     </insert>
+
+
     <select id="selectClobTestDOList1" resultType="com.duyj.dbtest.entity.ClobTestDO">
           select COLUMN1, COLUMN2, COLUMN3, COLUMN4, CLOB_ID
           from CLOB_TEST
@@ -106,4 +108,20 @@
     select t.* from common_info t where
       t.column1 in ('5730e0b69f9311e8aca6df63db49cf0d', '5730e0b79f9311e8aca6cd1b28b7daaa')
   </select>
+
+    <update id="createTempTable">
+        create temporary table if not exists tmp_table (
+                name VARCHAR(10) NOT NULL,
+                value INTEGER NOT NULL
+            )
+    </update>
+
+    <insert id="insertTemp">
+      insert into tmp_table (name,value)
+      values ('123',1 )
+    </insert>
+
+    <select id="selectTemp" resultType="java.util.Map">
+        select name,value from tmp_table
+    </select>
 </mapper>
