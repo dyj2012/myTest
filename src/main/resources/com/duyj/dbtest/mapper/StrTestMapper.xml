@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.duyj.dbtest.mapper.StrTestMapper">
+    <select id="selectTestList" resultType="hashmap">
+      Select * FROM t_dim_object
+        where rowNum &lt; 10
+        ${testStr}
+    </select>
+</mapper>
