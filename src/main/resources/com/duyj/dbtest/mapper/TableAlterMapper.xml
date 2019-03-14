@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.duyj.dbtest.mapper.TableAlterMapper">
+    <resultMap id="BaseResultMap" type="com.duyj.dbtest.model.TablePartitionVO">
+        <result column="year" jdbcType="VARCHAR" property="year"/>
+        <result column="partName" jdbcType="VARCHAR" property="partName"/>
+    </resultMap>
+
+    <update id="addPartition" parameterType="com.duyj.dbtest.model.TablePartitionVO">
+        ALTER TABLE `${tableName}` ADD PARTITION (PARTITION `${partName}` VALUES LESS THAN (${year})) ;
+    </update>
+
+    <select id="selectPartition" resultMap="BaseResultMap">
+        select  partition_name partName, partition_description year
+              from information_schema.partitions
+        where table_schema = schema()
+              and table_name = #{tableName};
+    </select>
+</mapper>

@@ -14,7 +14,6 @@ import javax.annotation.Resource;
 @Component
 public class BatchOperationHandler {
 
-    @Resource(name = "batchSqlSession")
     private SqlSessionTemplate sqlSessionTemplate;
 
     public <T> Object batchUpdate(Class<T> t, BatchCallback<T> consumer) {

@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
-    <properties resource="generator.properties"/>
+    <properties resource="jdbc.properties"/>
     <!-- 一个数据库一个Context -->
     <context id="mysql" targetRuntime="MyBatis3">
         <!-- 注释 -->
@@ -14,7 +14,7 @@
             <property name="suppressAllComments" value="true"/>
         </commentGenerator>
         <!-- 数据库连接 -->
-        <jdbcConnection driverClass="${jdbc.driverClass}" connectionURL="${jdbc.connectionURL}" userId="${jdbc.userId}"
+        <jdbcConnection driverClass="${jdbc.driverClass}" connectionURL="${jdbc.url}" userId="${jdbc.userId}"
                         password="${jdbc.password}"/>
 
         <!-- 类型转换 -->
@@ -25,7 +25,7 @@
 
         <!--生成Model类存放位置-->
         <!-- 仅需更改 targetPackage -->
-        <javaModelGenerator targetPackage="com.duyj.dbtest.entity" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.duyj.dbpart.entity" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
@@ -33,28 +33,23 @@
 
         <!-- 生成的SQLMapper映射文件包名和位置 -->
         <!-- 仅需更改 targetPackage -->
-        <sqlMapGenerator targetPackage="com.duyj.dbtest.mapper" targetProject="src/main/resources">
+        <sqlMapGenerator targetPackage="com.duyj.dbpart.mapper" targetProject="src/main/resources">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
         <!--生成Dao类存放位置-->
         <!-- 仅需更改 targetPackage -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.duyj.dbtest.mapper"
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.duyj.dbpart.mapper"
                              targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
         <!-- 生成对应表及类名 -->
         <!-- 仅需更改 tableName 和 domainObjectName -->
-        <table tableName="clob_test" domainObjectName="ClobTestDO"
+        <table tableName="test_part" domainObjectName="TestPartDO"
                enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false">
             <property name="useActualColumnNames" value="false"/>
-            <columnOverride column="COLUMN1" javaType="String"/>
-            <columnOverride column="COLUMN2" javaType="String"/>
-            <columnOverride column="COLUMN3" javaType="String"/>
-            <columnOverride column="COLUMN4" javaType="String"/>
-            <columnOverride column="CLOB_ID" javaType="String"/>
         </table>
     </context>
 </generatorConfiguration>

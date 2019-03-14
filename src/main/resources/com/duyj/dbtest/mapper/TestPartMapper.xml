@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.duyj.dbtest.mapper.TestPartMapper">
+  <delete id="deleteByPrimaryKey" parameterType="com.duyj.dbtest.entity.TestPartDO">
+    delete from test_part
+    where id = #{id,jdbcType=VARCHAR}
+      and date = #{date,jdbcType=DATE}
+  </delete>
+  <update id="insert" parameterType="com.duyj.dbtest.entity.TestPartDO">
+    insert into test_part (id, date)
+    values (#{id,jdbcType=VARCHAR}, #{date,jdbcType=DATE})
+  </update>
+</mapper>
