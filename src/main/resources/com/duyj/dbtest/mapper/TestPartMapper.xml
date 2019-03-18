@@ -7,7 +7,7 @@
       and date = #{date,jdbcType=DATE}
   </delete>
   <update id="insert" parameterType="com.duyj.dbtest.entity.TestPartDO">
-    insert into test_part (id, date)
+    INSERT INTO test_part (id, date)
     values (#{id,jdbcType=VARCHAR}, #{date,jdbcType=DATE})
   </update>
 </mapper>

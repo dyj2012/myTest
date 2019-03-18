@@ -20,8 +20,8 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class ITablePartitionAspect {
-    private static final String SUB_SQL = "### SQL: insert into ";
-    private static final String EXCEPTION_SQL = "Table has no partition for value ";
+    private static final String SUB_SQL = "### SQL:";
+    private static final String EXCEPTION_SQL = "Table has no partition for value";
 
     @Autowired
     private TableManager tableManager;
@@ -45,9 +45,11 @@ public class ITablePartitionAspect {
         } catch (Exception e) {
             if (e.getMessage().contains("Table has no partition for value")) {
                 String s = e.toString();
-                String tableName = StringUtils.substringBetween(s, SUB_SQL, " (");
+                System.out.println(s);
+                String tableName = StringUtils.substringBetween(s, SUB_SQL, "(").trim();
                 String partValue = StringUtils.substringBetween(s, EXCEPTION_SQL, "\r\n");
-                tableManager.addPartition(tableName, partValue);
+                System.out.println(tableName.substring(tableName.lastIndexOf(" ")).trim());
+                tableManager.addPartition(tableName.substring(tableName.lastIndexOf(" ")).trim(), partValue.trim());
                 return doProceed(joinPoint);
             } else {
                 throw e;
