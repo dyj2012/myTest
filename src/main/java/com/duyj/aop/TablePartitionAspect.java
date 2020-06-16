@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
-public class ITablePartitionAspect {
+public class TablePartitionAspect {
     private static final String SUB_SQL = "### SQL:";
     private static final String EXCEPTION_SQL = "Table has no partition for value";
 

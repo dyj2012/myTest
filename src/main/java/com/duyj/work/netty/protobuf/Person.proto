@@ -1,0 +1,8 @@
+syntax="proto3";  
+package com.luangeng.netty.protobuf;  
+  
+message Person {  
+    string username=1;  
+    int32 age=2;  
+    string sex=3;  
+}

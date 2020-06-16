@@ -1,0 +1,108 @@
+一、什么是webService:
+webService即WEB服务。它使一种跨编程语言和操作系统的远程调用技术。
+1、采用标准的SOAP（Simple Object Access Protocol）协议传输。SOAP属于w3c标准。
+2、采用wsdl作为描述语言的webService使用说明书，wsdl属于w3c标准。
+3、xml是webService跨平台的基础。
+
+二、webService的使用场景
+1、多个异构系统的集成
+2、发布公共的服务接口
+
+三、webService的三要素
+1、SOAP是一种简单对象访问协议（Simple Object Access Protocol）是一种简单的基于XML的协议。它使用成语通过HTTP来交换信息，可以理解为：SOAP = HTTP + XML。
+SOAP不是webService的专有协议，其他应用协议也使用SOAP传输数据。如：SMTP等。
+2、WSDL（webService description language）
+    是基于xml的御用描述webService及函数，参数，返回值。也就是说wsdl是webService的使用说明书。
+3、UDDI
+    UDDI是一种目录服务，企业经自己开发的webService注册在UDDI，也可以使用别的企业在UDDI上注册的服务，从而达到资源共享，促进全球经济合作。
+
+四、使用JAX-WS开发webService
+JAX-WS 的全称为 Java API for XML-Based Webservices ，早期的基于SOAP 的JAVA 的Web 服务规范JAX-RPC（Java API For XML-RemoteProcedure Call）目前已经被JAX-WS 规范取代。
+从java5开始支持JAX-WS2.0版本，Jdk1.6.0_13以后的版本支持2.1版本，jdk1.7支持2.2版本。
+编程思路
+1、编写SEI（Service Endpoint Interface）
+2、发布服务类
+3、根据服务地址查看wsdl（使用说明书）
+4、根据wsdl生成客户端代码
+使用命令：wsimport -s . -p 包名 wsdl地址
+5、客户端调用
+
+五、生成客户端代码
+a.Wsimport介绍
+     wsimport是jdk自带的webservice客户端工具,可以根据wsdl文档生成客户端调用代码(java代码).当然,无论服务器端的WebService是用什么语言写的,
+     都可以生成调用webservice的客户端代码，服务端通过客户端代码调用webservice。
+     wsimport.exe位于JAVA_HOME\bin目录下.
+
+b.常用参数为:
+ -d<目录>  - 将生成.class文件。默认参数。
+ -s<目录> - 将生成.java文件。
+ -p<生成的新包名> -将生成的类，放于指定的包下。
+ (wsdlurl) http://server:port/service?wsdl，必须的参数。
+ 示例：wsimport -s . -p 包名 wsdlurl
+ 注意：-s不能分开，-s后面有个小点
+
+
+客户端调用
+方式一：
+
+ /**
+ * 测试客户端
+ * @author MOTUI
+ *
+ */
+public class TestClient {
+
+    public static void main(String[] args) {
+        //获得WeatherServiceImplService对象
+        WeatherServiceImplService serviceImplService = new  WeatherServiceImplService();
+        //通过WeatherServiceImplService对象获得WeatherServiceImpl核心类
+        WeatherServiceImpl serviceImplPort = serviceImplService.getWeatherServiceImplPort();
+        //调用方法
+        String weather = serviceImplPort.getWeather("北京");
+        System.out.println(weather);
+    }
+}
+
+方式二【标准的webService调用方式】：
+
+/**
+ * 测试客户端
+ * @author MOTUI
+ *
+ */
+public class TestClient1 {
+
+    public static void main(String[] args) throws Exception {
+        //服务器地址
+        URL url = new URL("http://localhost:9999/ws?wsdl");
+        /**
+         * 参数1：wsdl 中的targetNamespace
+         * 参数2：wsdl 中的服务视图名称
+         */
+        QName qName = new QName("http://service.motui.com/","WeatherServiceImplService");
+
+        /**
+         * 参数1：wsdl 地址
+         * 参数2：QName
+         */
+        //创建服务器对象
+        Service service = Service.create(url,qName);
+        //获取protType
+        WeatherServiceImpl port = service.getPort(WeatherServiceImpl.class);
+        //调用方法
+        String weather = port.getWeather("北京");
+        System.out.println(weather);
+    }
+}
+
+五、webService的优缺点
+优点：
+1、采用xml支持跨平台远程调用
+2、基于http的SOAP协议，可跨越防火墙
+3、支持面向对象开发
+4、有利于软件和数据的重用，实现松耦合。
+
+缺点：
+由于SOAP是基于xml传递数据，xml本身传递数据时会传输一些无关数据从而效率不高，随着SOAP协议的不断完善，SOAP协议增加了许多内容，
+这样那个就导致了使用SOAP协议去完成简单的数据传输的效率不高。
+

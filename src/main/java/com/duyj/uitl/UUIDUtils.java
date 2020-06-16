@@ -14,7 +14,7 @@ public class UUIDUtils {
      *
      * @return
      */
-    public static String getUUID() {
+    public synchronized static String getUUID() {
         UUID uuid = UUID.randomUUID();
         return uuid.toString().replace("-", "");
     }
