@@ -103,8 +103,8 @@
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory1"/>
     </bean>
 
-        <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-            <property name="basePackage" value="com.duyj.mybatis.mapper2"/>
-            <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory2"/>
-        </bean>
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.duyj.mybatis.mapper2"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory2"/>
+    </bean>
 </beans>
