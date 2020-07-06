@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!-- 使用注解式aop必须的配置 -->
+    <aop:aspectj-autoproxy proxy-target-class="true" expose-proxy="true"/>
+
+    <context:component-scan base-package="com.duyj">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <!-- 加载数据源配置文件 -->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <!-- 是否忽略不可解析的 -->
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+        <!-- 多个locations， 单个location <value> -->
+        <property name="locations">
+            <list>
+                <value>classpath:log4j.properties</value>
+                <value>classpath:log4j2.properties</value>
+                <value>classpath:jdbc.properties</value>
+            </list>
+        </property>
+    </bean>
+    <!-- 开启事务控制的注解支持 -->
+    <tx:annotation-driven/>
+
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource1"/>
+    </bean>
+
+    <!-- 数据源配置 -->
+    <bean id="dataSource1" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
+        <!-- 数据库基本信息配置 -->
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.userId}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="driverClassName" value="${jdbc.driverClass}"/>
+    </bean>
+
+    <bean id="dataSource2" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
+        <!-- 数据库基本信息配置 -->
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.userId}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="driverClassName" value="${jdbc.driverClass}"/>
+    </bean>
+
+    <!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
+    <bean id="sqlSessionFactory1" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource1"/>
+        <property name="configLocation" value="classpath:mybatis.xml"/>
+        <!-- 自动扫描mapping.xml文件，**表示迭代查找 -->
+        <property name="mapperLocations">
+            <array>
+                <value>classpath*:com/duyj/**/mapper/*Mapper.xml</value>
+            </array>
+        </property>
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageInterceptor">
+                    <property name="properties">
+                        <!-- 什么都不配，使用默认的配置 -->
+                        <value></value>
+                    </property>
+                </bean>
+            </array>
+        </property>
+    </bean>
+
+    <bean id="sqlSessionFactory2" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource2"/>
+        <property name="configLocation" value="classpath:mybatis.xml"/>
+        <!-- 自动扫描mapping.xml文件，**表示迭代查找 -->
+        <property name="mapperLocations">
+            <array>
+                <value>classpath*:com/duyj/**/mapper2/*Mapper.xml</value>
+            </array>
+        </property>
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageInterceptor">
+                    <property name="properties">
+                        <!-- 什么都不配，使用默认的配置 -->
+                        <value></value>
+                    </property>
+                </bean>
+            </array>
+        </property>
+    </bean>
+
+    <!-- DAO接口所在包名，Spring会自动查找其下的类 ,包下的类需要使用@MapperScan注解,否则容器注入会失败 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.duyj.*.mapper"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory1"/>
+    </bean>
+
+        <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+            <property name="basePackage" value="com.duyj.mybatis.mapper2"/>
+            <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory2"/>
+        </bean>
+</beans>
