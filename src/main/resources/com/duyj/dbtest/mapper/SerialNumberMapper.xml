@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.duyj.dbtest.mapper.SerialNumberMapper">
+
+    <update id="increase">
+        update T_SERIAL_NUMBER set NUM_VALUE = NUM_VALUE +1 where OBJ_ID = ${key}
+    </update>
+    <select id="lockRow" resultType="java.lang.Long">
+        select NUM_VALUE from T_SERIAL_NUMBER where OBJ_ID = ${key} for update
+    </select>
+    <select id="getNum" resultType="java.lang.Long">
+        select NUM_VALUE from T_SERIAL_NUMBER where OBJ_ID = ${key}
+    </select>
+
+    <select id="getSequence" resultType="java.lang.Long">
+        SELECT @@IDENTITY FROM DUAL
+    </select>
+    <insert id="insertRow">
+        INSERT INTO T_SEQUENCE (CREATE_DATE) VALUES (current_timestamp)
+    </insert>
+</mapper>
