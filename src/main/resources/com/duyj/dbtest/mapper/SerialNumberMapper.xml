@@ -5,6 +5,20 @@
     <update id="increase">
         update T_SERIAL_NUMBER set NUM_VALUE = NUM_VALUE +1 where OBJ_ID = ${key}
     </update>
+    <select id="increaseAndReturn" resultType="java.lang.Long">
+        DECLARE
+         V_Sqlstatement Varchar2(2000);
+         outputData SYS_REFCURSOR;
+        BEGIN
+          update T_SERIAL_NUMBER set NUM_VALUE = NUM_VALUE +1 where OBJ_ID = 3;
+          V_Sqlstatement := 'select NUM_VALUE from T_SERIAL_NUMBER where OBJ_ID = 3';
+         OPEN outputData for v_Sqlstatement;
+        End;
+    </select>
+    <select id="increaseAndReturn2" resultType="java.lang.Long">
+       update T_SERIAL_NUMBER set NUM_VALUE = NUM_VALUE +1 where OBJ_ID = ${key} ;
+        select NUM_VALUE from T_SERIAL_NUMBER where OBJ_ID = ${key}
+    </select>
     <select id="lockRow" resultType="java.lang.Long">
         select NUM_VALUE from T_SERIAL_NUMBER where OBJ_ID = ${key} for update
     </select>
@@ -14,6 +28,9 @@
 
     <select id="getSequence" resultType="java.lang.Long">
         SELECT @@IDENTITY FROM DUAL
+    </select>
+    <select id="getSequence_oracle" resultType="java.lang.Long">
+        select SEQ_IDENTITY.NEXTVAL from DUAL
     </select>
     <insert id="insertRow">
         INSERT INTO T_SEQUENCE (CREATE_DATE) VALUES (current_timestamp)

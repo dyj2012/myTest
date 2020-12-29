@@ -16,12 +16,13 @@ public class NumMapperTest extends BaseTest {
 
     @Autowired
     SerialServer serialServer;
-    private static final int COUNT = 100;
+    private static final int COUNT = 1;
+    private static final int n = 1;
 
     @Test
     public void test1() {
         ThreadUtils.run(COUNT, a -> {
-            for (int i = 0; i < 1; i++) {
+            for (int i = 0; i < n; i++) {
                 System.out.println(serialServer.f1());
             }
         });
@@ -31,7 +32,7 @@ public class NumMapperTest extends BaseTest {
     @Test
     public void test2() {
         ThreadUtils.run(COUNT, a -> {
-            for (int i = 0; i < 1; i++) {
+            for (int i = 0; i < n; i++) {
                 System.out.println(serialServer.f2());
             }
         });
@@ -41,11 +42,31 @@ public class NumMapperTest extends BaseTest {
     @Test
     public void test3() {
         ThreadUtils.run(COUNT, a -> {
-            for (int i = 0; i < 1; i++) {
+            for (int i = 0; i < n; i++) {
                 System.out.println(serialServer.f3());
             }
         });
         System.out.println("test3");
+    }
+
+    @Test
+    public void test3_orcle() {
+        ThreadUtils.run(COUNT, a -> {
+            for (int i = 0; i < n; i++) {
+                System.out.println(serialServer.f3_orcle());
+            }
+        });
+        System.out.println("test3");
+    }
+
+    @Test
+    public void test4() {
+        ThreadUtils.run(COUNT, a -> {
+            for (int i = 0; i < n; i++) {
+                System.out.println(serialServer.f4());
+            }
+        });
+        System.out.println("test4");
     }
 
 

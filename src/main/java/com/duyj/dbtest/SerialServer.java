@@ -28,6 +28,16 @@ public class SerialServer {
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public long f3() {
         serialNumberMapper.insertRow();
-        return serialNumberMapper.getSequence() ;
+        return serialNumberMapper.getSequence();
+    }
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public long f3_orcle() {
+        return serialNumberMapper.getSequence_oracle();
+    }
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public long f4() {
+        return serialNumberMapper.increaseAndReturn(3L);
     }
 }
